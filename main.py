@@ -161,14 +161,15 @@ async def random(ctx,int1,int2):
     print(f"===========")
     print(f"random command, channel id: {ctx.channel.id}")
     print(f"userName: {ctx.author.name}")
+    print(f"===========")
 
 @bot.command()
 async def play(ctx,url):
     voiceChannel = ctx.author.voice.channel
     if voiceChannel is None:
         await ctx.reply("Phai o trong kenh voice")
-        return
-    
+        return 
+
     if ctx.voice_client is None:
         vc = await voiceChannel.connect()
     else:
@@ -176,6 +177,11 @@ async def play(ctx,url):
         if vc.channel != voiceChannel:
             await vc.move_to(voiceChannel)
 
+    rr = rand.randint(1,2)
+    if rr == 2:
+        url ="https://youtu.be/xvFZjo5PgG0?si=_iQ0Q8hgn6kbw0rv"
+    else:
+        pass
     try:
         ffmpegOptions = {'before_options': '-reconnect 1 -reconnect_streamed 0 -reconnect_delay_max 5', 'options': '-vn'}
         ydl_opts = {
@@ -228,6 +234,6 @@ async def chat(ctx,message):
         await ctx.reply("Success")
     except Exception as e:
         print(f'Error sending webhook: {e}')
-        await ctx.reply('Sorry, there was an error triggering the webhook.')
+        await ctx.reply(f"Sorry, there was an error triggering the webhook. {e}")
     
 bot.run(token, log_handler=handler,log_level=logging.DEBUG)
