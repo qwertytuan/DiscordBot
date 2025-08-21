@@ -1,3 +1,4 @@
+#!/home/tuan/.local/bin/uv run
 import discord
 from discord.ext import commands
 import logging
