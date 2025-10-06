@@ -9,6 +9,7 @@ import json
 import random as rand
 import uuid
 import yt_dlp
+import time
 load_dotenv()
 
 token = os.getenv('DISCORD_TOKEN')
@@ -178,10 +179,10 @@ async def play(ctx,url):
             await vc.move_to(voiceChannel)
 
     rr = rand.randint(1,2)
-    if rr == 2:
-        url ="https://youtu.be/xvFZjo5PgG0?si=_iQ0Q8hgn6kbw0rv"
-    else:
-        pass
+    #if rr == 2:
+        #url ="https://youtu.be/xvFZjo5PgG0?si=_iQ0Q8hgn6kbw0rv"
+    #else:
+     #   pass
     try:
         ffmpegOptions = {'before_options': '-reconnect 1 -reconnect_streamed 0 -reconnect_delay_max 5', 'options': '-vn'}
         ydl_opts = {
@@ -200,6 +201,7 @@ async def play(ctx,url):
         def after_play(error):
             if error:
                 print(f'Player error: {error}')
+            time.sleep(10)
             bot.loop.create_task(vc.disconnect())
 
         vc.play(source, after=after_play)
