@@ -36,7 +36,7 @@ git clone https://github.com/qwertytuan/DiscordBot && cd DiscordBot
 Edit the [.env_example](.env_example)
 Then run:
 ```bash
-uv synv && uv run main.py
+uv sync && uv run main.py
 ```
 ## The hard way
 Run
